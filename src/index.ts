@@ -1,36 +1,23 @@
-import {AWSError, Request, SecretsManager} from 'aws-sdk';
-import {GetSecretValueResponse} from 'aws-sdk/clients/secretsmanager';
-import {existsSync} from 'fs';
-import {parse} from 'dotenv';
+import {config, SecretsManager} from 'aws-sdk';
 
-export function expose(): Promise<void> {
-    const projectRootPath = process.cwd();
-    const packageInfo = require(`${projectRootPath}/package.json`);
+config.update({region: process.env.AWS_DEFAULT_REGION});
 
-    const nodeEnv = process?.env?.NODE_ENV ?? 'development';
-    const secretsManager = new SecretsManager();
-    let envs;
+export async function expose(): Promise<Partial<any>> {
+	try {
+		const projectRootPath = process.cwd();
+		const packageInfo = require(`${projectRootPath}/package.json`);
 
-    if (existsSync(`${projectRootPath}/.env.example`)) {
-        envs = config(`${projectRootPath}/.env.example`);
-    } else if (existsSync(`${projectRootPath}/.env.schema`)) {
-        envs = config(`${projectRootPath}/.env.example`);
-    }
+		const nodeEnv = process?.env?.APP_ENV ?? 'dev';
+		const secretsManager = new SecretsManager({apiVersion: '2017-10-17'});
+		const SecretId = `${nodeEnv}.${packageInfo.name}`.toLowerCase();
 
-    const promises = Object.keys(envs).map(env => secretsManager.getSecretValue({
-        SecretId: `${nodeEnv}/${packageInfo.name}/${env}`
-    }));
+		const response = await secretsManager.getSecretValue({SecretId}).promise();
+		const secrets = JSON.parse(response.SecretString);
 
-    return Promise.all(promises).then((values: Request<GetSecretValueResponse, AWSError>[]) => {
-        values.forEach(value => {
-            value.eachPage((err, data): boolean => {
-                if (err) {
-                    console.error(err);
-                } else {
-                    process.env[data.Name] = data.SecretString;
-                }
-                return true;
-            });
-        });
-    });
+		Object.keys(secrets).forEach(secret => process.env[secret] = secrets[secret]);
+
+		return secrets;
+	} catch (err) {
+		console.error(err);
+	}
 }
