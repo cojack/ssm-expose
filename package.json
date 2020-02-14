@@ -1,10 +1,10 @@
 {
   "name": "ssm-expose",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "description": "Expose AWS SSM Parameters into Environment Variables",
+  "main": "lib/expose.js",
   "scripts": {
-    "build": "tsc",
+    "start": "tsc && node lib/expose.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,15 +15,12 @@
     "node": ">=8"
   },
   "keywords": [
-    "aws",
+    "aws ssm",
+    "aws secret manager",
+    "aws secrets",
     "ssm",
-    "aws",
-    "ssm",
-    "parameters",
-    "ssm",
-    "parameters",
-    "environment",
-    "variables",
+    "secrets expose",
+    "secret variables",
     "envs"
   ],
   "author": "cojack <xcojack@gmail.com>",
@@ -33,15 +30,11 @@
   },
   "homepage": "https://github.com/cojack/expose-ssm#readme",
   "dependencies": {
-    "aws-sdk": "^2.614.0",
-    "tslib": "^1.10.0"
+    "aws-sdk": "^2.618.0"
   },
   "devDependencies": {
     "@types/node": "^13.7.0",
     "tslint": "^6.0.0",
     "typescript": "^3.7.5"
-  },
-  "peerDependencies": {
-    "dotenv": "^8.2.0 "
   }
 }
