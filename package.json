@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "description": "Expose AWS SSM Parameters into Environment Variables",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "start": "tsc && node lib",
     "test": "echo \"Error: no test specified\" && exit 1"
