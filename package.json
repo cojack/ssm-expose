@@ -1,6 +1,6 @@
 {
   "name": "ssm-expose",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Expose AWS SSM Parameters into Environment Variables",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
