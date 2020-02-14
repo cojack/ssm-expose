@@ -1,5 +1,5 @@
 # ssm-expose
-Expose AWS SSM Parameters into Environment Variables
+Expose AWS SSM Secrets into Environment Variables
 
 ## How it works?
 
@@ -29,8 +29,8 @@ Example:
 * APP_ENV - by default `dev`
 
 Why not `NODE_EVN`?
-Because for me this variable is suited for different part of logic, it tells to the NODE ecosystem, in what environment
-this current application is running. But your application might be running in dev state on production environment.
+Because for me this variable is suited for different part of logic, it tells to the NODE ecosystem, in which environment
+this current application is running. But your application might be running in different state on production environment.
 
 So my propose here is to use:
 
