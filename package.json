@@ -2,9 +2,9 @@
   "name": "ssm-expose",
   "version": "0.0.1",
   "description": "Expose AWS SSM Parameters into Environment Variables",
-  "main": "lib/expose.js",
+  "main": "lib/index.js",
   "scripts": {
-    "start": "tsc && node lib/expose.js",
+    "start": "tsc && node lib",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
