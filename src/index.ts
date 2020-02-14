@@ -2,7 +2,7 @@ import {config, SecretsManager} from 'aws-sdk';
 
 config.update({region: process.env.AWS_DEFAULT_REGION});
 
-export async function expose(): Promise<Partial<any>> {
+export async function expose(): Promise<JSON> {
 	try {
 		const projectRootPath = process.cwd();
 		const packageInfo = require(`${projectRootPath}/package.json`);
@@ -18,6 +18,6 @@ export async function expose(): Promise<Partial<any>> {
 
 		return secrets;
 	} catch (err) {
-		console.error(err);
+		throw new Error(err.message);
 	}
 }
