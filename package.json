@@ -1,0 +1,47 @@
+{
+  "name": "ssm-expose",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/cojack/expose-ssm.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "keywords": [
+    "aws",
+    "ssm",
+    "aws",
+    "ssm",
+    "parameters",
+    "ssm",
+    "parameters",
+    "environment",
+    "variables",
+    "envs"
+  ],
+  "author": "cojack <xcojack@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cojack/expose-ssm/issues"
+  },
+  "homepage": "https://github.com/cojack/expose-ssm#readme",
+  "dependencies": {
+    "aws-sdk": "^2.614.0",
+    "tslib": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.7.0",
+    "tslint": "^6.0.0",
+    "typescript": "^3.7.5"
+  },
+  "peerDependencies": {
+    "dotenv": "^8.2.0 "
+  }
+}
